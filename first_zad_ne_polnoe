@@ -1,0 +1,87 @@
+#include <iostream>
+using namespace std;
+
+
+class Student
+{
+private:
+	string book_name;
+	string author;
+	int page_book;
+
+public:
+	void book_name()
+	{
+		cout << "Bood name " << book_name;
+	}
+
+	void author_name()
+	{
+		cout << "author name " << author;
+	}
+
+
+	void page_book()
+	{
+		cout << "page book " << page_book;
+	}
+
+
+	void Init(string boo_name, string auth, int page)
+	{
+
+	}
+
+	void Print()
+	{
+		cout << "Bood name " << book_name;
+		cout << "author name " << author;
+		cout << "page book " << page_book;
+	}
+
+	string Getname()
+	{
+		return book_name;
+	}
+	void Set_name(string boo_name)
+	{
+		if (boo_name != " ")
+		{
+			book_name = boo_name;
+		}
+	}
+
+	string Getauthor()
+	{
+		return book_name;
+	}
+	void Set_author(string auth)
+	{
+		if (auth != " ")
+		{
+			author = auth;
+		}
+	}
+
+	int Getpagebook()
+	{
+		return page_book;
+	}
+	void Set_pagebook(int page)
+	{
+		if (page >= 0)
+		{
+			page_book = page;
+		}
+	}
+
+	void Input()
+
+};
+int main()
+{
+	Student stud;
+	stud.Print();
+
+	return 0;
+}
