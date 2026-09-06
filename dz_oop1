@@ -1,0 +1,248 @@
+#include <iostream>
+using namespace std;
+
+
+// class Student
+// {
+// private:
+// 	string book_name;
+// 	string author;
+// 	int page_book;
+
+// public:
+// 	void bo_name()
+// 	{
+// 		cout << "Bood name " << book_name;
+// 	}
+
+// 	void author_name()
+// 	{
+// 		cout << "author name " << author;
+// 	}
+
+
+// 	void pag_book()
+// 	{
+// 		cout << "page book " << page_book;
+// 	}
+
+
+// 	void Init(string boo_name, string auth, int page)
+// 	{
+//         string book_name = boo_name;
+//         string author = auth;
+//         int page_book = page;
+// 	}
+
+// 	void Print()
+// 	{
+// 		cout << "Book name " << book_name;
+// 		cout << "author name " << author;
+// 		cout << "page book " << page_book;
+// 	}
+
+// 	string Getname()
+// 	{
+// 		return book_name;
+// 	}
+// 	void Set_name(string boo_name)
+// 	{
+// 		if (boo_name != " ")
+// 		{
+// 			book_name = boo_name;
+// 		}
+// 	}
+
+// 	string Getauthor()
+// 	{
+// 		return book_name;
+// 	}
+// 	void Set_author(string auth)
+// 	{
+// 		if (auth != " ")
+// 		{
+// 			author = auth;
+// 		}
+// 	}
+
+// 	int Getpagebook()
+// 	{
+// 		return page_book;
+// 	}
+// 	void Set_pagebook(int page)
+// 	{
+//         if (page >= 10)
+//         {
+//             page_book = page;
+//         }
+// 	}
+
+// 	void Input()
+//     {
+//         cout << "Введите имя книги пожалуйста ";
+//         cin >> book_name;
+//         cout << "Введите имя автора ";
+//         cin >> author;
+//         cout << "Введите кол-во страниц ";
+//         cin >> page_book;
+
+//         while (page_book < 10) 
+//         {
+//             cout << "мало страниц ";
+//             cin >> page_book;
+//         }
+//     }
+
+// };
+
+// int main()
+// {
+// 	Student stud;
+//     stud.Input();
+// 	stud.Print();
+
+// 	return 0;
+// }
+
+
+class BankAccount{
+private:
+    string account_number;
+    string owner;
+    double balance;
+
+public:
+    string GetAccountNumber()
+    {
+        return account_number;
+    }
+    void SetAccountNumber(string acc_num)
+    {
+        if (acc_num != "")
+        {
+            account_number = acc_num;
+        }
+    }
+    string GetOwner()
+    {
+        return owner;
+    }
+    void SetOwner(string own)
+    {
+        if (own != "")
+        {
+            owner = own;
+        }
+    }
+
+    double GetBalance()
+    {
+        return balance;
+    }
+    void SetBalance(double bal)
+    {
+        if (bal >= 0)
+        {
+            balance = bal;
+        }
+        else
+        {
+            cout << "Баланс не может быть - \n";
+        }
+    }
+
+    void Init(string acc_num, string own, double initial_balance)
+    {
+        account_number = acc_num;
+        owner = own;
+        
+        if (initial_balance >= 0)
+        {
+            balance = initial_balance;
+        }
+        else
+        {
+            balance = 0;
+            cout << "Стартовый баланс не может быть - \n";
+        }
+    }
+
+    void Input()
+    {
+        cout << "Введите номер счета: ";
+        cin >> account_number;
+
+        cout << "Введите владельца счета: ";
+        cin >> owner;
+
+        cout << "Введите начальный баланс: ";
+        cin >> balance;
+
+        while (balance < 0)
+        {
+            cout << "Баланс не может быть - ";
+            cin >> balance;
+        }
+    }
+
+    void Deposit(double amount)
+    {
+        if (amount > 0)
+        {
+            balance += amount;
+            cout << "Счет пополнен на " << amount << endl;
+        }
+        else
+        {
+            cout << "Сумма пополнения должна быть больше 0 \n";
+        }
+    }
+
+    void Withdraw(double amount)
+    {
+        if (amount <= 0)
+        {
+            cout << "Сумма для снятия должна быть больше 0\n";
+        }
+        else if (amount > balance)
+        {
+            cout << "Ошибка: недостаточно средств на счете! Текущий баланс: " << balance << endl;
+        }
+        else
+        {
+            balance -= amount;
+            cout << "Снято " << amount << " баланс: " << balance << endl;
+        }
+    }
+
+    void PrintBalance()
+    {
+        cout << "Текущий баланс: " << balance << endl;
+    }
+
+    void PrintInfo()
+    {
+        cout << "Номер счета: " << account_number << endl;
+        cout << "Владелец: " << owner << endl;
+        cout << "Баланс: " << balance << endl;
+    }
+};
+
+int main()
+{
+    BankAccount account1;
+    account1.Init("12345", "Я", 1000);
+    account1.PrintInfo();
+
+    account1.Deposit(500);
+    account1.PrintBalance();
+
+    account1.Withdraw(3000); 
+    account1.Withdraw(400);
+    account1.PrintBalance();
+
+    account1.Input();
+    account1.PrintInfo();
+
+    return 0;
+}
