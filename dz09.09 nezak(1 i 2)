@@ -151,3 +151,106 @@ int main()
 
 	
 }
+
+
+class User {
+private:
+	string login;
+	string email;
+	string password;
+
+public:
+	User()
+	{
+		cout << "constructor by default\n";
+		login = "";
+		email = "";
+		password = "";
+	}
+
+	User(string log, string mail, string pass)
+	{
+		login = log;
+		email = mail;
+		password = pass;
+		cout << "constructor by parametrs\n";
+	}
+
+	string Getlogin()
+	{
+		return login;
+	}
+
+	void Setlogin(string log)
+	{
+		login = log;
+		cout << endl;
+	}
+
+	string Getemail()
+	{
+		return email;
+	}
+
+	void Setemail(string mail)
+	{
+		email = mail;
+		cout << endl;
+	}
+
+	void Setpassword(string pass)
+	{
+		password = pass;
+		cout << endl;
+	}
+
+	void showProfile()
+	{
+		cout << "Your login - " << login << endl;
+		cout << "Your email - " << email << endl;
+	}
+
+	void changePassword(string oldPass, string newPass)
+	{
+		cout << "Write old password: ";
+		cin >> oldPass;
+
+		if (oldPass == password)
+		{
+			cout << "Write new password: ";
+			cin >> newPass;
+			password = newPass;
+			cout << "Password changed!" << endl;
+		}
+		else
+		{
+			cout << "Wrong password!" << endl;
+		}
+	}
+};
+
+int main()
+{
+	User obj1;
+
+	obj1.Setlogin("Dima");
+	obj1.Setemail("dima@gmail.com");
+	obj1.Setpassword("12345");
+
+	obj1.showProfile();
+
+	string oldPass;
+	string newPass;
+
+	obj1.changePassword(oldPass, newPass);
+
+	obj1.showProfile();
+
+	User obj2("Alex", "alex@gmail.com", "qwerty");
+
+	obj2.showProfile();
+
+	obj2.changePassword(oldPass, newPass);
+}
+
+
