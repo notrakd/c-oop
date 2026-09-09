@@ -1,0 +1,153 @@
+#include <iostream>
+using namespace std;
+
+
+//
+//class Phone {
+//private:
+//	string model;
+//	string phone_name;
+//public:
+//	Phone()//конструктор по умолчанию обнуление полей
+//	{
+//		cout << "constructor by default\n";
+//		model = "";
+//		phone_name = " ";
+//	}
+//	Phone(string mo, string pho_n)//конструктор с полями
+//	{
+//		model = mo;
+//		phone_name = pho_n;
+//		cout << "constructor by 2 parametrs \n";
+//	}
+//	void Init(string mo, string pho_n)
+//	{
+//		model = mo;
+//		phone_name = pho_n;
+//	}
+//	void print()
+//	{
+//		cout << "Your model name - " << model;
+//		cout << "Your phone name - " << phone_name;
+//	}
+//
+//	 string Getmod()
+// 	{
+// 		return model;
+// 	}
+// 	void Set_mod(string mo)
+// 	{
+// 			model = mo;
+//			cout << endl;
+// 	}
+//
+//	string Getpho_na()
+//	{
+//		return phone_name;
+//	}
+//	void Set_pho_na(string pho_n)
+//	{
+//		phone_name = pho_n;
+//		cout << endl;
+//	}
+//};
+//
+//int main()
+//{
+//	Phone obj1;// вызов конструктора поумолчанию
+//	obj1.Init("Sifon", "17 pro max");
+//	obj1.print();
+//
+//	Phone obj2("Samsa", "flip 6");
+//	obj2.print();
+//}
+
+
+
+
+
+class Student {
+private:
+	string name;
+	string group;
+	string speciality;
+public:
+	Student()//конструктор по умолчанию обнуление полей
+	{
+		cout << "constructor by default\n";
+		name = "";
+		speciality = " ";
+		group = " ";
+	}
+	Student(string na, string spe, string gro)//конструктор с полями
+	{
+		name = na;
+		speciality = spe;
+		group = gro;
+		cout << "constructor by 2 parametrs \n";
+	}
+	void Init(string na, string spe, string gro)
+	{
+		name = na;
+		speciality = spe;
+		group = gro;
+	}
+	void print()
+	{
+		cout << "Your group name - " << name;
+		cout << "Your speciality name - " << speciality;
+		cout << "Your group number - " << group;
+	}
+
+	string Getna()
+	{
+		return name;
+	}
+	void Set_na(string na)
+	{
+		name = na;
+		cout << endl;
+	}
+
+	string Getspe()
+	{
+		return speciality;
+	}
+	void Setspe(string spe)
+	{
+		speciality = spe;
+		cout << endl;
+	}
+
+	string Getgro()
+	{
+		return group;
+	}
+	void Setgro(string gro)
+	{
+		group = gro;
+		cout << endl;
+	}
+
+	void changeGroup(string newGroup)
+	{
+		cout << "Write new Group";
+		cin >> newGroup;
+		group = newGroup;
+	}
+};
+
+int main()
+{
+	Student obj1;// вызов конструктора поумолчанию
+	obj1.Init("YA", "Programirovanie", "12");
+	obj1.print();
+	string new_group;
+	obj1.changeGroup(new_group);
+	obj1.print();
+
+	Student obj2("TI", "dizigne", "123");
+	obj2.print();
+
+	
+}
