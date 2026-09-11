@@ -1,0 +1,191 @@
+________________________main.cpp___________________________
+#include "Bankomat.h"
+#include <iostream>
+using namespace std;
+#include "string"
+#include "Bankomat.cpp"
+
+int main()
+{
+    Bankomat bank1;
+
+    bank1.Init(1, 4000, 2000,  10);
+    bank1.Print();
+    bank1.Bank_snat(1789);
+}
+________________________main.cpp___________________________
+
+
+________________________Bankomat.h_________________________
+#pragma once
+
+class Bankomat
+{
+    int id;
+    int sum;
+    int min;
+    int max;
+
+public:
+    Bankomat();
+    Bankomat(int sum, int max, int min);
+
+    void Init(int i, int su, int ma, int mi);
+    void Print();
+
+    int Bank_dep(int amount);
+    int Bank_snat(int amount);
+
+    int GetId();
+    int GetSum();
+    int GetMin();
+    int GetMax();
+
+    void SetId(int i);
+    void SetSum(int su);
+    void SetMin(int mi);
+    void SetMax(int ma);
+};  
+________________________Bankomat.h_________________________
+
+
+________________________Bankomat.cpp_______________________
+#include <iostream>
+#include <string>
+#include "Bankomat.h"
+
+using namespace std;
+
+Bankomat::Bankomat()
+{
+    cout << "Constructor\n";
+    id = 0;
+    sum = 0;
+    max = 0;
+    min = 0;
+}
+
+Bankomat::Bankomat(int sum, int max, int min)
+{
+    id = 0;
+    sum = sum;
+    max = max;
+    min = min;
+}
+
+void Bankomat::Init(int i, int su, int ma, int mi)
+{
+    id = i;
+    sum = su;
+    max = ma;
+    min = mi;
+}
+
+void Bankomat::Print()
+{
+    cout << "Bankomat Id " << id << endl;
+    cout << "Bancomat Sum " << sum << endl;
+    cout << "Max snat " << max << endl;
+    cout << "Min snat " << min << endl;
+}
+
+int Bankomat::GetId()
+{
+    return id;
+}
+
+int Bankomat::GetSum()
+{
+    return sum;
+}
+
+int Bankomat::GetMax()
+{
+    return max;
+}
+
+int Bankomat::GetMin()
+{
+    return min;
+}
+
+void Bankomat::SetId(int i)
+{
+    if (i > 0)
+    {
+        id = i;
+    }
+    else
+    {
+        id = 0;
+    }
+}
+
+void Bankomat::SetSum(int su)
+{
+    if (su >= 0)
+    {
+        sum = su;
+    }
+    else
+    {
+        sum = 0;
+    }
+}
+
+void Bankomat::SetMin(int mi)
+{
+    if (mi >= 0)
+    {
+        min = mi;
+    }
+    else
+    {
+        min = 0;
+    }
+}
+
+void Bankomat::SetMax(int ma)
+{
+    if (ma >= min)
+    {
+        max = ma;
+    }
+    else
+    {
+        max = min;
+    }
+}
+
+int Bankomat::Bank_snat(int amount)
+{
+    if (amount <= 0)
+    {
+        cout << "Error\n";
+        return 0;
+    }
+
+    if (amount < min)
+    {
+        cout << "Error " << min << endl;
+        return 0;
+    }
+
+    if (amount > max)
+    {
+        cout << "Error " << max << endl;
+        return 0;
+    }
+
+    if (amount > sum)
+    {
+        cout << "Eror"  << sum << endl;
+        return 0;
+    }
+
+    sum -= amount;
+    cout << "Good " << amount << "Money on bankomat " << sum << endl;
+
+    return amount;
+}
+________________________Bankomat.cpp_______________________
