@@ -1,0 +1,150 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Book
+{
+    string title;
+    string author;
+    string genre;
+    bool taken;
+    string readerSurname;
+    int readerId;
+
+public:
+    Book()
+    {
+        title = "";
+        author = "";
+        genre = "";
+        taken = false;
+        readerSurname = "";
+        readerId = 0;
+    }
+
+    Book(string t, string a, string g)
+    {
+        title = t;
+        author = a;
+        genre = g;
+        taken = false;
+        readerSurname = "";
+        readerId = 0;
+    }
+
+    void setTitle(string t)
+    {
+        title = t;
+    }
+
+    void setAuthor(string a)
+    {
+        author = a;
+    }
+
+    void setGenre(string g)
+    {
+        genre = g;
+    }
+
+    void setTaken(bool t)
+    {
+        taken = t;
+    }
+
+    void setReaderSurname(string s)
+    {
+        readerSurname = s;
+    }
+
+    void setReaderId(int id)
+    {
+        readerId = id;
+    }
+
+    string getTitle()
+    {
+        return title;
+    }
+
+    string getAuthor()
+    {
+        return author;
+    }
+
+    string getGenre()
+    {
+        return genre;
+    }
+
+    bool getTaken()
+    {
+        return taken;
+    }
+
+    string getReaderSurname()
+    {
+        return readerSurname;
+    }
+
+    int getReaderId()
+    {
+        return readerId;
+    }
+
+    void input()
+    {
+        cout << "Enter book title: ";
+        getline(cin, title);
+
+        cout << "Enter author: ";
+        getline(cin, author);
+
+        cout << "Enter genre: ";
+        getline(cin, genre);
+
+        int choice;
+        cout << "Is the book borrowed? (1 - yes, 0 - no): ";
+        cin >> choice;
+        cin.ignore();
+
+        taken = choice == 1;
+
+        if (taken)
+        {
+            cout << "Enter reader surname: ";
+            getline(cin, readerSurname);
+
+            cout << "Enter reader ID: ";
+            cin >> readerId;
+        }
+    }
+
+    void output()
+    {
+        cout << "\nTitle: " << title << endl;
+        cout << "Author: " << author << endl;
+        cout << "Genre: " << genre << endl;
+
+        if (taken)
+        {
+            cout << "Book is borrowed" << endl;
+            cout << "Reader surname: " << readerSurname << endl;
+            cout << "ID: " << readerId << endl;
+        }
+        else
+        {
+            cout << "Book is borrowed: no" << endl;
+        }
+    }
+};
+
+int main()
+{
+    Book book;
+
+    book.input();
+    book.output();
+
+    return 0;
+}
