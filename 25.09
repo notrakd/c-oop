@@ -1,0 +1,141 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class 貯水池 {
+    static int カウント;
+    string 名前;
+    int 幅;
+    int 長さ;
+    int 最大深度;
+
+public:
+    貯水池()
+    {
+        名前 = "";
+        幅 = 0;
+        長さ = 0;
+        最大深度 = 0;
+        カウント++;
+    }
+
+    貯水池(string n, int w, int l, int d)
+    {
+        名前 = n;
+        幅 = w;
+        長さ = l;
+        最大深度 = d;
+        カウント++;
+    }
+
+    void 印刷()
+    {
+        cout << "名前: " << 名前 << endl;
+        cout << "幅: " << 幅 << endl;
+        cout << "長さ: " << 長さ << endl;
+        cout << "最大深度: " << 最大深度 << endl;
+        cout << endl;
+    }
+
+    static void プリントアウト()
+    {
+        cout << "カウント: " << カウント << endl;
+    }
+
+    void 概算容積()
+    {
+        cout << "概算容積: "
+             << 幅 * 長さ * 最大深度 << endl;
+    }
+
+    void テスト(貯水池 b)
+    {
+        if (this->幅 * this->長さ > b.幅 * b.長さ)
+            cout << "最初の貯水池の面積の方が大きいです" << endl;
+        else if (this->幅 * this->長さ < b.幅 * b.長さ)
+            cout << "2番目の貯水池の面積の方が大きいです" << endl;
+        else
+            cout << "面積は同じです" << endl;
+    }
+
+    void 名前設定(string n)
+    {
+        名前 = n;
+    }
+
+    void 幅設定(int w)
+    {
+        幅 = w;
+    }
+
+    void 長さ設定(int l)
+    {
+        長さ = l;
+    }
+
+    void 深度設定(int d)
+    {
+        最大深度 = d;
+    }
+
+    string 名前取得()
+    {
+        return 名前;
+    }
+
+    int 幅取得()
+    {
+        return 幅;
+    }
+
+    int 長さ取得()
+    {
+        return 長さ;
+    }
+
+    int 深度取得()
+    {
+        return 最大深度;
+    }
+};
+
+int 貯水池::カウント = 0;
+
+int main()
+{
+    貯水池 a;
+    貯水池 b;
+
+    a.名前設定("ドニエストル");
+    a.幅設定(100);
+    a.長さ設定(200);
+    a.深度設定(20);
+
+    b.名前設定("ドナウ");
+    b.幅設定(150);
+    b.長さ設定(100);
+    b.深度設定(15);
+
+    cout << "最初の貯水池:" << endl;
+    a.印刷();
+
+    cout << "2番目の貯水池:" << endl;
+    b.印刷();
+
+    cout << "名前: " << a.名前取得() << endl;
+    cout << "幅: " << a.幅取得() << endl;
+    cout << "長さ: " << a.長さ取得() << endl;
+    cout << "深度: " << a.深度取得() << endl;
+    cout << endl;
+
+    a.概算容積();
+    b.概算容積();
+
+    cout << endl;
+
+    a.テスト(b);
+
+    貯水池::プリントアウト();
+
+    return 0;
+}
