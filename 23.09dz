@@ -1,0 +1,122 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class CPU {
+    string model;
+    double frequency;
+
+public:
+    CPU() {
+        model = "Intel Core i7";
+        frequency = 3.5;
+    }
+
+    CPU(string m, double f) {
+        model = m;
+        frequency = f;
+    }
+
+    void print() {
+        cout << "CPU: " << model << " (" << frequency << " GHz)" << endl;
+    }
+};
+
+class RAM {
+    int size;
+
+public:
+    RAM() {
+        size = 16;
+    }
+
+    RAM(int s) {
+        size = s;
+    }
+
+    void print() {
+        cout << "RAM: " << size << " GB" << endl;
+    }
+};
+
+class SSD {
+    int capacity;
+
+public:
+    SSD() {
+        capacity = 512;
+    }
+
+    SSD(int c) {
+        capacity = c;
+    }
+
+    void print() {
+        cout << "SSD: " << capacity << " GB" << endl;
+    }
+};
+
+class GPU {
+    string model;
+
+public:
+    GPU() {
+        model = "NVIDIA RTX 4060";
+    }
+
+    GPU(string m) {
+        model = m;
+    }
+
+    void print() {
+        cout << "GPU: " << model << endl;
+    }
+};
+
+class Laptop {
+    CPU cpu;
+    RAM ram;
+    SSD ssd;
+    GPU gpu;
+    string model;
+    double price;
+
+public:
+    Laptop() {
+        model = "Unknown";
+        price = 0.0;
+    }
+
+    Laptop(string m, double p, CPU c, RAM r, SSD s, GPU g) {
+        model = m;
+        price = p;
+        cpu = c;
+        ram = r;
+        ssd = s;
+        gpu = g;
+    }
+
+    void printInfo() {
+        cout << "Laptop: " << model << endl;
+        cout << "Price: " << price << endl;
+        cpu.print();
+        ram.print();
+        ssd.print();
+        gpu.print();
+        cout << endl;
+    }
+};
+
+int main() {
+    CPU cpu("Intel Core i7-13700H", 5.0);
+    RAM ram(32);
+    SSD ssd(1000);
+    GPU gpu("NVIDIA RTX 4070");
+
+    Laptop myLaptop("ASUS ROG Strix", 1800.0, cpu, ram, ssd, gpu);
+
+    cout << "Laptop Details " << endl;
+    myLaptop.printInfo();
+
+    return 0;
+}
