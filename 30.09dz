@@ -1,0 +1,97 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class CityUA
+{
+    string name; // население города
+    int population_city; // население города
+
+    static string language; // государственный язык
+    static string capital; // столица
+    static string president; // президент
+    static int population_country; // население страны
+    static int Count; // количество созданных городов
+
+public:
+    CityUA()
+    {
+        name = "";
+        population_city = 0;
+        Count++;
+    };
+    CityUA(string n, int pop) 
+    {
+        name = n;
+        population_city = pop;
+        Count++;
+    };
+    void Init(string n, int a)
+    {
+        name = n;
+        population_city = a;
+    };
+
+    void setName(string n) {
+        name = n;
+    }
+
+    string getName() const {
+        return name;
+    }
+
+    void setPopulationCity(int pop) {
+        population_city = pop;
+    }
+
+    int getPopulationCity() const {
+        return population_city;
+    }
+    void Print()const
+    {
+        cout << "name  " << name << endl;
+        cout << "population city " << population_city << endl;
+        cout << endl;
+    };
+
+    static void PrintData()
+    {
+        cout << "language  " << language << endl;
+        cout << "capital " << capital << endl;
+        cout << "president " << president << endl;
+        cout << "population country " << population_country << endl;
+        cout << "Count " << Count << endl;
+        cout << endl;
+    }; // вывод всех статических данных  
+
+};
+
+string CityUA::language = "Ukrainian";
+string CityUA::capital = "Kyiv";
+string CityUA::president = "Volodymyr Zelenski";
+int CityUA::population_country = 45000000;
+int CityUA::Count = 0;
+
+int main()
+{
+    CityUA city1("Odesa", 1000000);
+    CityUA city2;
+    city2.Init("Lviv", 720000);
+    city1.Print();
+    city2.Print();
+
+    city2.setPopulationCity(730000);
+    cout << city2.getName() << city2.getPopulationCity() << endl << endl;
+    CityUA::PrintData();
+
+}
+
+
+
+
+
+
+
+
+
