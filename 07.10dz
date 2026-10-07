@@ -1,0 +1,122 @@
+#include <iostream>
+using namespace std;
+
+class Date {
+    int day;
+    int month;
+    int year;
+public:
+    Date()
+    {
+        day = 1;
+        month = 1;
+        year = 2000;
+    }
+    Date(int d, int m, int y) : day(d), month(m), year(y) {}
+        
+    int toTotalDays() const
+    {
+        return (year - 1) * 360 + (month - 1) * 30 + day;
+    }
+
+    void fromTotalDays(int totalDays)
+    {
+        totalDays--;
+        
+        year = (totalDays / 360) + 1;
+        totalDays %= 360;
+
+        month = (totalDays / 30) + 1;
+        day = (totalDays % 30) + 1;
+    }
+
+    void setDay(int d) 
+    { 
+        day = d; 
+    }
+    int getDay() const 
+    { 
+        return day; 
+    }
+
+    void setMonth(int m) 
+    { 
+        month = m; 
+    }
+    int getMonth() const 
+    { 
+        return month; 
+    }
+
+    void setYear(int y) 
+    { 
+        year = y; 
+    }
+    int getYear() const 
+    {
+        return year; 
+    }
+    
+    void Print() const
+    {
+        cout << day << "." << month << "." << year << endl;
+    }
+
+    int operator-(Date& b)
+    {
+        int totalDays1 = year * 360 + (month - 1) * 30 + day;
+        int totalDays2 = b.year * 360 + (b.month - 1) * 30 + b.day;
+
+        int diff = totalDays1 - totalDays2;
+        if (diff < 0)
+        {
+            diff = -diff; 
+        }
+
+        return diff;
+    }
+
+    Date operator+(int days)
+    {
+        Date result = *this;
+        int totalDays = result.year * 360 + (result.month - 1) * 30 + result.day + days;
+
+        result.year = totalDays / 360;
+        totalDays %= 360;
+
+        result.month = (totalDays / 30) + 1;
+        result.day = totalDays % 30;
+
+        if (result.day == 0)
+        {
+            result.day = 30;
+            result.month--;
+            if (result.month == 0)
+            {
+                result.month = 12;
+                result.year--;
+            }
+        }
+
+        return result;
+    }
+};
+    
+
+int main() 
+{
+    Date d1(15, 5, 2023);
+    Date d2(10, 8, 2023);
+
+    cout << "Дата 1: ";
+    d1.Print();
+    cout << "Дата 2: ";
+    d2.Print();
+
+    int diff = d2 - d1;
+    cout << "Разница между датами " << diff << " дн." << endl << endl;
+
+    Date d3 = d1 + 45;
+    cout << "Дата 1 + 45 дней = ";
+    d3.Print();
+}
