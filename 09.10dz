@@ -1,0 +1,183 @@
+#include <iostream>
+#include "Date.h"
+
+using namespace std;
+
+int main() {
+    Date d1(15, 5, 2023);
+    Date d2(10, 8, 2023);
+
+    cout << "Дата 1: ";
+    d1.Print();
+    cout << "Дата 2: ";
+    d2.Print();
+
+    int diff = d2 - d1;
+    cout << "Разница между датами: " << diff << " дн." << endl << endl;
+
+    Date d3 = d1 + 45;
+    cout << "d1 + 45 дней = ";
+    d3.Print();
+
+    Date d4 = d2 - 20;
+    cout << "d2 - 20 дней = ";
+    d4.Print();
+
+    d1++;
+    cout << "d1 после d1++: ";
+    d1.Print();
+
+    d1 += 10;
+    cout << "d1 после d1 += 10: ";
+    d1.Print();
+
+    if (d2 > d1) {
+        cout << "Дата 2 больше Даты 1" << endl;
+    }
+
+    if (d1 != d2) {
+        cout << "Даты не равны" << endl;
+    }
+
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+class Date {
+    int day;
+    int month;
+    int year;
+
+public:
+    Date() {
+        day = 1;
+        month = 1;
+        year = 2000;
+    }
+
+    Date(int d, int m, int y) : day(d), month(m), year(y) {}
+
+    int toTotalDays() const {
+        return (year - 1) * 360 + (month - 1) * 30 + day;
+    }
+
+    void fromTotalDays(int totalDays) {
+        if (totalDays <= 0) totalDays = 1;
+        totalDays--;
+
+        year = (totalDays / 360) + 1;
+        totalDays %= 360;
+
+        month = (totalDays / 30) + 1;
+        day = (totalDays % 30) + 1;
+    }
+
+    void setDay(int d) { day = d; }
+    int getDay() const { return day; }
+
+    void setMonth(int m) { month = m; }
+    int getMonth() const { return month; }
+
+    void setYear(int y) { year = y; }
+    int getYear() const { return year; }
+
+    void Print() const {
+        cout << day << "." << month << "." << year << endl;
+    }
+
+    Date& operator++() {
+        fromTotalDays(toTotalDays() + 1);
+        return *this;
+    }
+
+    Date& operator--() {
+        fromTotalDays(toTotalDays() - 1);
+        return *this;
+    }
+
+    Date operator++(int) {
+        Date rez = *this;
+        fromTotalDays(toTotalDays() + 1);
+        return rez;
+    }
+
+    Date operator--(int) {
+        Date rez = *this;
+        fromTotalDays(toTotalDays() - 1);
+        return rez;
+    }
+
+    Date operator+(int days) const {
+        Date rez = *this;
+        rez.fromTotalDays(rez.toTotalDays() + days);
+        return rez;
+    }
+
+    Date operator-(int days) const {
+        Date rez = *this;
+        rez.fromTotalDays(rez.toTotalDays() - days);
+        return rez;
+    }
+
+    int operator-(const Date& obj2) const {
+        int diff = toTotalDays() - obj2.toTotalDays();
+        if (diff < 0) {
+            diff = -diff;
+        }
+        return diff;
+    }
+
+    Date& operator+=(int days) {
+        fromTotalDays(toTotalDays() + days);
+        return *this;
+    }
+
+    Date& operator-=(int days) {
+        fromTotalDays(toTotalDays() - days);
+        return *this;
+    }
+
+    bool operator==( Date& obj2)  {
+        return toTotalDays() == obj2.toTotalDays();
+    }
+
+    bool operator!=( Date& obj2)  {
+        return toTotalDays() != obj2.toTotalDays();
+    }
+
+    bool operator>( Date& obj2)  {
+        return toTotalDays() > obj2.toTotalDays();
+    }
+
+    bool operator<( Date& obj2)  {
+        return toTotalDays() < obj2.toTotalDays();
+    }
+
+    bool operator>=( Date& obj2)  {
+        return toTotalDays() >= obj2.toTotalDays();
+    }
+
+    bool operator<=( Date& obj2)  {
+        return toTotalDays() <= obj2.toTotalDays();
+    }
+};
+
+
+
+
+
+
+
