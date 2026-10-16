@@ -1,0 +1,152 @@
+#include "Student.h"
+
+Student operator++(Student& obj, int)
+{
+    Student old = obj;
+    obj.setCourse(obj.getCourse() + 1);
+    return old;
+}
+
+Student operator--(Student& obj)
+{
+    obj.setCourse(obj.getCourse() - 1);
+    return obj;
+}
+
+Student& operator+=(Student& obj, int years)
+{
+    obj.setAge(obj.getAge() + years);
+    return obj;
+}
+
+Student& operator-=(Student& obj, int years)
+{
+    obj.setAge(obj.getAge() - years);
+    return obj;
+}
+
+ostream& operator<<(ostream& out, Student& obj)
+{
+    out << "Name: " << obj.getName()
+        << "\tAge: " << obj.getAge()
+        << "\tCourse: " << obj.getCourse() << endl;
+    return out;
+}
+
+istream& operator>>(istream& in, Student& obj)
+{
+    string name;
+    int age, course;
+
+    cout << "Enter name: ";
+    in >> name;
+    cout << "Enter age: ";
+    in >> age;
+    cout << "Enter course: ";
+    in >> course;
+
+    obj.setName(name);
+    obj.setAge(age);
+    obj.setCourse(course);
+    return in;
+}
+
+
+
+
+int main() {
+    Student obj1;                      
+    Student obj2("Ivan", 19, 2);
+
+    cout << "obj1: " << obj1;
+    cout << "obj2: " << obj2;
+// ______________________+1__________________________
+    obj1++;                             
+    cout << "After obj1++: " << obj1;
+// ______________________-1__________________________
+    --obj1;                             
+    cout << "After --obj1: " << obj1;
+// ________________________+2________________________
+    obj1 += 2;                          
+    cout << "After obj1 += 2: " << obj1;
+// ________________________-2________________________
+    obj1 -= 2;                          
+    cout << "After obj1 -= 2: " << obj1;
+// _____________________________________________________
+
+
+    cout << "Enter new student ";
+    cin >> obj1;
+    cout << "You entered: " << obj1;
+
+}
+
+
+
+
+#pragma once
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Student
+{
+    string name;
+    int age;
+    int course;
+public:
+    Student()
+    {
+        name = "";
+        age = 18;
+        course = 1;
+    }
+    
+    Student(string n, int a, int c) : name(n), age(a), course(c) {}
+
+    void setName(string n)
+    { 
+        name = n; 
+    }
+    void setAge(int a) 
+    { 
+        age = a; 
+    }
+    void setCourse(int c) 
+    { 
+        course = c; 
+    }
+
+    string getName() const 
+    { 
+        return name; 
+    }
+    int getAge() const 
+    {
+         return age; 
+    }
+    int getCourse() const 
+    { 
+        return course; 
+    }
+
+    void Print() const
+    {
+        cout << "Name: " << name << "\tAge: " << age << "\tCourse: " << course << endl;
+    }
+
+    void Input()
+    {
+        cout << "Enter name: ";
+        cin >> name;
+        cout << "Enter age: ";
+        cin >> age;
+        cout << "Enter course: ";
+        cin >> course;
+    }
+};
+
+
+
+
