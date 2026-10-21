@@ -1,0 +1,122 @@
+
+
+#include<iostream>
+using namespace std;
+ // перегруженные функции для инициализации массивов
+
+void Init(int mas[], int size)
+{
+	for (int i = 0;i < size;i++)
+	{
+		mas[i] = rand() % 41 - 20;// -20 +20
+	}
+}
+void Init(double mas[], int size)
+{
+	for (int i = 0;i < size;i++)
+	{
+		mas[i] = rand() % 100 * 1.6;
+	}
+}
+void Init(char mas[], int size)
+{
+	for (int i = 0;i < size;i++)
+	{
+		mas[i] = rand() % 30 + 65; // буквы
+	}
+}
+template<class T>
+void Print(T mas[], int size)
+{
+	for (int i = 0;i < size;i++)
+	{
+		cout << mas[i] << "|";
+	}
+	cout << endl;
+}
+
+template <class T>
+T in_min(T mas[], int size)
+{
+    int minIn = 0;
+
+    for (int i = 0; i < size; i++)
+    {
+        if (mas[i] < mas[minIn])
+        {
+            minIn = i;
+        }
+    }
+
+    return minIn;
+}
+
+template <class T>
+T el_min(T mas[], int size)
+{
+    T min_el = mas[0];
+    for(int i = 1; i < size; i++)
+    {
+        if(mas[i] < min_el)
+        {
+            min_el = mas[i];
+        }
+    }
+    return min_el;
+}
+
+template <class T>
+T sum_mas(T mas[], int size)
+{
+    T sum = 0;
+    for(int i = 0; i < size; i++)
+    {
+        sum += mas[i];
+    }
+    return sum;
+}
+
+template <class T>
+T kol_pol_el(T mas[], int size)
+{
+    T cout = 0;
+    for(int i = 0; i < size; i++)
+    {
+        if(mas[i] > 0)
+        {
+            cout++;
+        }
+    }
+    return cout;
+}
+/*Написать следующие шаблоны функции:
+1-есть
+2-есть 
+3-есть
+4-
+  1. Функция принимает массив и размер массива, возвращает индекс минимального элемента массива
+  2. Функция принимает массив и размер массива, возвращает значение минимального элемента массива
+  3. Функция принимает массив и размер массива,возвращает сумму всех элементов массива
+  4. Функция принимает массив и размер массива, возвращает количество положительных элементов массива.
+*/
+int main()
+{
+	int arr1[5];
+	double arr2[10];
+	char arr3[7];
+
+	Init(arr1, 5);
+	Init(arr2, 10);
+	Init(arr3, 7);
+
+	Print(arr1, 5);
+	Print(arr2, 10);
+	Print(arr3, 7);
+
+    cout << "Min index " << in_min(arr1, 5) << endl;
+    cout << "Min elem" << el_min(arr1, 5) << endl;
+    cout << "sum elem" << sum_mas(arr1, 5) << endl;
+    cout << "кол-во пол elem" << kol_pol_el(arr1, 5) << endl;
+
+
+}
