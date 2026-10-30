@@ -1,0 +1,77 @@
+// #include <iostream>
+// #include <fstream>
+// #include <string>
+// using namespace std;
+
+// int main()
+// {
+//     fstream inout("Text.txt", ios::in | ios::out | ios::app);
+
+//     char buff[100];
+//     cin.getline(buff, 100);
+
+//     inout << buff << endl;
+
+//     inout.seekg(0, ios::beg);
+//     char read[100];
+//     while(!inout.eof())
+//     {
+//         inout.getline(read, 100);
+//         cout << read << endl;
+//     }
+
+//     inout.close();
+// }
+
+
+
+
+
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    fstream inout("Text.txt", ios::in);
+
+    char read[100];
+    int lines = 0;
+    int words = 0;
+
+    while(inout.getline(read, 100))
+    {
+        lines++;
+
+        bool inWord = false;
+
+        for(int i = 0; read[i] != '\0'; i++)
+        {
+            if(read[i] != ' ' && read[i] != '\t')
+            {
+                if(!inWord)
+                {
+                    words++;
+                    inWord = true;
+                }
+            }
+            else
+            {
+                inWord = false;
+            }
+        }
+    }
+
+    cout << "Stroki " << lines << endl;
+    cout << "Slova " << words << endl;
+
+    inout.close();
+
+    return 0;
+}
+
+
+
+
+
+
