@@ -1,0 +1,116 @@
+#include<iostream>
+#include <ostream>
+#include<string>
+using namespace std;
+
+class Animal // родительский класс, базовый класс, класс-заготовка
+{
+protected:
+  string species;// вид
+  double weight; // вес
+  string color;  // цвет
+  string food;   // еда
+public:
+  Animal(){}
+  Animal(string sp, double wg, string col, string fd)
+  {
+    species = sp;
+    weight = wg;
+    color = col;
+    food = fd;
+  }
+  void Print()
+  {
+    cout << "Species: " << species << endl;
+    cout << "Weight: " << weight << endl;
+    cout << "Color: " << color << endl;
+    cout << "Food: " << food << endl;
+  }
+
+};
+
+class Parrot: public Animal // Parrot - наследник, производный класс, дочерний класс,класс-потомок
+{
+  string name;
+  bool talking; // True- yes, False- NO
+  double wingspan;
+public:
+  Parrot(){}
+  Parrot(string sp, double wg, string col, string fd, string nm, bool talk, double wing):Animal(sp,wg,col,fd)
+  {
+    name = nm;
+    talking = talk;
+    wingspan = wing;
+  }
+  void Print() // переопределение метода Print.
+  {
+    Animal::Print();
+    cout << "Name: " << name << endl;
+    cout << "Talking: " << talking << endl;
+    cout << "Wingspan: " << wingspan<<"sm" <<endl << endl;
+  }
+};
+
+class Dog: public Animal
+{
+    string name;
+    string breed;
+    string gender;
+public:
+    Dog(){};
+    Dog(string sp, double wg, string col, string fd, string nm, string br, string gen):Animal(sp,wg,col,fd)
+    {
+        name = nm;
+        breed = br;
+        gender = gen;
+    }
+
+    void Print()
+    {
+        Animal::Print();
+        cout << "Name " << name << endl;
+        cout << "Breed " << breed << endl;
+        cout << "Gender " << gender << endl;
+    }
+};
+
+class Cat: public Animal
+{
+  string name;
+  string breed;
+  string gender;
+  bool parkour;
+
+public:
+  Cat(){};
+  Cat(string sp, double wg, string col, string fd, string nm, string br, string gen, bool park):Animal(sp,wg,col,fd)
+  {
+    name = nm;
+    breed = br;
+    gender = gen;
+    parkour = park;
+  }
+
+  void Print()
+  {
+    Animal::Print();
+    cout << "Name " << name << endl;
+    cout << "Breed " << breed << endl;
+    cout << "Gender " << gender << endl;
+    cout << "Кот паркурит? " << parkour << endl;
+  }
+};
+
+int main()
+{
+  Parrot obj("birds", 200, "yellow", "nuts", "Kesha", true, 20);
+  obj.Print();
+
+  Dog obj2("dog", 6, "green", "meet", "Grisha", "Овчарка", "кабель");
+  obj2.Print();
+
+  Cat obj3("cat", 4, "red", "корм", "Нюша", "янтарная", "мальчик", 1);
+  obj3.Print();
+
+
+}
