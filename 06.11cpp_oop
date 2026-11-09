@@ -1,0 +1,218 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+
+class Vehicle
+{
+    protected:
+    string model;
+    string color;
+    int year;
+    int wheels;
+    double price;
+    double max_speed;
+public:
+    Vehicle() {};
+    Vehicle(string mod, string col, int ye, int whe, double pri, double sp)
+    {
+        model = mod;
+        color = col;
+        year = ye;
+        wheels = whe;
+        price = pri;
+        max_speed = sp;
+    }
+    void Print ()
+    {
+        cout << "Model " << model << endl;
+        cout << "Color " << color << endl;
+        cout << "Year " << year << endl;
+        cout << "Wheels " << wheels << endl;
+        cout << "Price " << price << endl;
+        cout << "Max_speed " << max_speed << endl;
+    }
+
+    void Init()
+    {
+        model = " ";
+        color = " ";
+        year = 0;
+        wheels = 0;
+        price = 0;
+        max_speed = 0;
+    }
+};
+//___________________________двухколёсный_________________________
+    class Twoweels : public Vehicle
+    {
+        bool hasBasket;      
+        double frameSize;
+        string brakeType;
+    public:
+        Twoweels() {};
+        Twoweels(string mod, string col, int ye, int whe, double pri, double sp,
+        bool bask, double fram, string brak) : Vehicle(mod, col, ye, whe, pri, sp)
+        {
+            hasBasket = bask;
+            frameSize = fram;
+            brakeType = brak;
+        }
+
+        void Print(){
+            Vehicle::Print();
+            cout << "Bastek " << hasBasket << endl;
+            cout << "Size " << frameSize << endl;
+            cout << "Type " << brakeType << endl;
+        }
+
+        void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        bool bask, double fram, string brak)
+        {
+            hasBasket = bask;
+            frameSize = fram;
+            brakeType = brak;
+        }
+    };
+//___________________________легковой_________________________
+    class Car : public Vehicle
+    {
+        int doors;
+        int seats;
+        string transmission;
+    public:
+        Car() {};
+        Car(string mod, string col, int ye, int whe, double pri, double sp,
+        int dr, int st, string trans) : Vehicle(mod, col, ye, whe, pri, sp)
+        {
+            doors = dr;
+            seats = st;
+            transmission = trans;
+        }
+
+        void Print(){
+            Vehicle::Print();
+            cout << "Doors " << doors << endl;
+            cout << "Seats " << seats << endl;
+            cout << "Transmission " << transmission << endl;
+        }
+
+        void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        int dr, int st, string trans)
+        {
+            doors = dr;
+            seats = st;
+            transmission = trans;
+        }
+    };
+//___________________________джип_________________________
+    class Jeep : public Vehicle
+    {
+        bool fourWheelDrive;
+        double clearance;
+        string terrainMode;
+    public:
+        Jeep() {};
+        Jeep(string mod, string col, int ye, int whe, double pri, double sp,
+        bool awd, double cl, string terr) : Vehicle(mod, col, ye, whe, pri, sp)
+        {
+            fourWheelDrive = awd;
+            clearance = cl;
+            terrainMode = terr;
+        }
+
+        void Print(){
+            Vehicle::Print();
+            cout << "4x4 " << fourWheelDrive << endl;
+            cout << "Clearance " << clearance << endl;
+            cout << "Terrain " << terrainMode << endl;
+        }
+
+        void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        bool awd, double cl, string terr)
+        {
+            fourWheelDrive = awd;
+            clearance = cl;
+            terrainMode = terr;
+        }
+    };
+//___________________________автобус_________________________
+    class Bus : public Vehicle
+    {
+        int passengers;
+        int doorsCount;
+        bool hasAirConditioner;
+    public:
+        Bus() {};
+        Bus(string mod, string col, int ye, int whe, double pri, double sp,
+        int pas, int dc, bool air) : Vehicle(mod, col, ye, whe, pri, sp)
+        {
+            passengers = pas;
+            doorsCount = dc;
+            hasAirConditioner = air;
+        }
+
+        void Print(){
+            Vehicle::Print();
+            cout << "Passengers " << passengers << endl;
+            cout << "Doors " << doorsCount << endl;
+            cout << "Air " << hasAirConditioner << endl;
+        }
+
+        void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        int pas, int dc, bool air)
+        {
+            passengers = pas;
+            doorsCount = dc;
+            hasAirConditioner = air;
+        }
+    };
+//___________________________фура_________________________
+    class Truck : public Vehicle
+    {
+        double loadCapacity;
+        bool hasTrailer;
+        string cargoType;
+    public:
+        Truck() {};
+        Truck(string mod, string col, int ye, int whe, double pri, double sp,
+        double load, bool trail, string cargo) : Vehicle(mod, col, ye, whe, pri, sp)
+        {
+            loadCapacity = load;
+            hasTrailer = trail;
+            cargoType = cargo;
+        }
+
+        void Print(){
+            Vehicle::Print();
+            cout << "Load " << loadCapacity << endl;
+            cout << "Trailer " << hasTrailer << endl;
+            cout << "Cargo " << cargoType << endl;
+        }
+
+        void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        double load, bool trail, string cargo)
+        {
+            loadCapacity = load;
+            hasTrailer = trail;
+            cargoType = cargo;
+        }
+    };
+
+int main()
+{
+    Twoweels obj1("Merida", "blue", 2022, 2, 600, 35, true, 19, "rim");
+    obj1.Print();
+    cout << endl;
+    Car obj2("Toyota", "yellow", 2019, 4, 18000, 190, 4, 5, "automatic");
+    obj2.Print();
+    cout << endl;
+    Jeep obj5("Jimny", "purple", 2021, 4, 25000, 145, true, 210, "mud");
+    obj5.Print();
+    cout << endl;
+    Bus obj3("MAN", "orange", 2018, 6, 250000, 90, 90, 3, true);
+    obj3.Print();
+    cout << endl;
+    Truck obj4("Volvo", "red", 2017, 10, 120000, 110, 20, true, "furniture");
+    obj4.Print();
+}
