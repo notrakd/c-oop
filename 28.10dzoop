@@ -1,0 +1,87 @@
+#pragma once
+#include<iostream>
+#include<string>
+#include<fstream>
+using namespace std;
+
+class Student
+{
+    string name;
+    string surname;
+    string university;
+    int age;
+public:
+    Student(){}
+    Student(string n, string sur, string un, int a)
+    {
+        name = n;
+        surname = sur;
+        university = un;
+        age = a;
+    }
+    void Init()
+    {
+        cout << "Имя: ";
+        cin >> name;
+        cout << "Фамилия: ";
+        cin >> surname;
+        cout << "Университет: ";
+        cin >> university;
+        cout << "Возраст: ";
+        cin >> age;
+    }
+    void Print()
+    {
+        cout << name << " " << surname << " " << university << " " << age << endl;
+    }
+
+    void WriteFile(string filename)
+    {
+        ofstream out(filename, ios::app);
+        out << name << " " << surname << " " << university << " " << age << endl;
+        out.close();
+    }
+    static void ReadFile(string filename)
+    {
+        ifstream in(filename);
+        Student s;
+        while (in >> s.name >> s.surname >> s.university >> s.age)
+        {
+            s.Print();
+        }
+        in.close();
+    }
+
+};
+
+
+
+
+
+
+
+
+
+
+
+
+#include"Student.h"
+
+int main()
+{
+    setlocale(LC_ALL, "Russian");
+
+    Student s1("Ivan", "Petrov", "BSU", 19);
+    Student s2("Anna", "Ivanova", "BSUIR", 20);
+    Student s3("Oleg", "Sidorov", "BNTU", 21);
+    Student s4("Maria", "Kozlova", "BSEU", 18);
+    Student s5("Pavel", "Smirnov", "GrSU", 22);
+
+    s1.WriteFile("students.txt");
+    s2.WriteFile("students.txt");
+    s3.WriteFile("students.txt");
+    s4.WriteFile("students.txt");
+    s5.WriteFile("students.txt");
+
+    Student::ReadFile("students.txt");
+}
