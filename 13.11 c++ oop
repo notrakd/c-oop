@@ -1,0 +1,374 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Vehicle
+{
+protected:
+    string model;
+    string color;
+    int year;
+    int wheels;
+    double price;
+    double max_speed;
+public:
+    Vehicle() {};
+    Vehicle(string mod, string col, int ye, int whe, double pri, double sp)
+    {
+        model = mod;
+        color = col;
+        year = ye;
+        wheels = whe;
+        price = pri;
+        max_speed = sp;
+    }
+
+    virtual void Print()
+    {
+        cout << "Model " << model << endl;
+        cout << "Color " << color << endl;
+        cout << "Year " << year << endl;
+        cout << "Wheels " << wheels << endl;
+        cout << "Price " << price << endl;
+        cout << "Max_speed " << max_speed << endl;
+    }
+
+    void Init()
+    {
+        model = " ";
+        color = " ";
+        year = 0;
+        wheels = 0;
+        price = 0;
+        max_speed = 0;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp)
+    {
+        model = mod;
+        color = col;
+        year = ye;
+        wheels = whe;
+        price = pri;
+        max_speed = sp;
+    }
+
+    virtual void MaxSpeed() const = 0;
+    virtual void FuelConsumption() const = 0;
+    virtual void WheelsCount() const = 0;
+    virtual void PassengersCount() const = 0;
+};
+
+class Twoweels : public Vehicle
+{
+    bool hasBasket;
+    double frameSize;
+    string brakeType;
+public:
+    Twoweels() {};
+    Twoweels(string mod, string col, int ye, int whe, double pri, double sp,
+        bool bask, double fram, string brak) : Vehicle(mod, col, ye, whe, pri, sp)
+    {
+        hasBasket = bask;
+        frameSize = fram;
+        brakeType = brak;
+    }
+
+    void Print() override
+    {
+        Vehicle::Print();
+        cout << "Basket " << hasBasket << endl;
+        cout << "Size " << frameSize << endl;
+        cout << "Brake " << brakeType << endl;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        bool bask, double fram, string brak)
+    {
+        Vehicle::Init(mod, col, ye, whe, pri, sp);
+        hasBasket = bask;
+        frameSize = fram;
+        brakeType = brak;
+    }
+
+    void MaxSpeed() const override
+    {
+        cout << "Max speed " << max_speed << " km/h" << endl;
+    }
+
+    void FuelConsumption() const override
+    {
+        cout << "Fuel consumption 0 l/100 km" << endl;
+    }
+
+    void WheelsCount() const override
+    {
+        cout << "Wheels " << wheels << endl;
+    }
+
+    void PassengersCount() const override
+    {
+        cout << "Passengers of two-wheeler: 1" << endl;
+    }
+};
+
+class Car : public Vehicle
+{
+    int doors;
+    int seats;
+    string transmission;
+public:
+    Car() {};
+    Car(string mod, string col, int ye, int whe, double pri, double sp,
+        int dr, int st, string trans) : Vehicle(mod, col, ye, whe, pri, sp)
+    {
+        doors = dr;
+        seats = st;
+        transmission = trans;
+    }
+
+    void Print() override
+    {
+        Vehicle::Print();
+        cout << "Doors " << doors << endl;
+        cout << "Seats " << seats << endl;
+        cout << "Transmission " << transmission << endl;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        int dr, int st, string trans)
+    {
+        Vehicle::Init(mod, col, ye, whe, pri, sp);
+        doors = dr;
+        seats = st;
+        transmission = trans;
+    }
+
+    void MaxSpeed() const override
+    {
+        cout << "Max speed  " << max_speed << " km/h" << endl;
+    }
+
+    void FuelConsumption() const override
+    {
+        cout << "Fuel consumption 7.5 l/100 km" << endl;
+    }
+
+    void WheelsCount() const override
+    {
+        cout << "Wheels " << wheels << endl;
+    }
+
+    void PassengersCount() const override
+    {
+        cout << "Passengers " << seats << endl;
+    }
+};
+
+class Jeep : public Vehicle
+{
+    bool fourWheelDrive;
+    double clearance;
+    string terrainMode;
+public:
+    Jeep() {};
+    Jeep(string mod, string col, int ye, int whe, double pri, double sp,
+        bool awd, double cl, string terr) : Vehicle(mod, col, ye, whe, pri, sp)
+    {
+        fourWheelDrive = awd;
+        clearance = cl;
+        terrainMode = terr;
+    }
+
+    void Print() override
+    {
+        Vehicle::Print();
+        cout << "4x4 " << fourWheelDrive << endl;
+        cout << "Clearance " << clearance << endl;
+        cout << "Terrain " << terrainMode << endl;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        bool awd, double cl, string terr)
+    {
+        Vehicle::Init(mod, col, ye, whe, pri, sp);
+        fourWheelDrive = awd;
+        clearance = cl;
+        terrainMode = terr;
+    }
+
+    void MaxSpeed() const override
+    {
+        cout << "Max speed " << max_speed << " km/h" << endl;
+    }
+
+    void FuelConsumption() const override
+    {
+        cout << "Fuel consumption: 10 l/100 km" << endl;
+    }
+
+    void WheelsCount() const override
+    {
+        cout << "Wheels  " << wheels << endl;
+    }
+
+    void PassengersCount() const override
+    {
+        cout << "Passengers 4" << endl;
+    }
+};
+
+class Bus : public Vehicle
+{
+    int passengers;
+    int doorsCount;
+    bool hasAirConditioner;
+public:
+    Bus() {};
+    Bus(string mod, string col, int ye, int whe, double pri, double sp,
+        int pas, int dc, bool air) : Vehicle(mod, col, ye, whe, pri, sp)
+    {
+        passengers = pas;
+        doorsCount = dc;
+        hasAirConditioner = air;
+    }
+
+    void Print() override
+    {
+        Vehicle::Print();
+        cout << "Passengers " << passengers << endl;
+        cout << "Doors " << doorsCount << endl;
+        cout << "Air " << hasAirConditioner << endl;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        int pas, int dc, bool air)
+    {
+        Vehicle::Init(mod, col, ye, whe, pri, sp);
+        passengers = pas;
+        doorsCount = dc;
+        hasAirConditioner = air;
+    }
+
+    void MaxSpeed() const override
+    {
+        cout << "Max speed " << max_speed << " km/h" << endl;
+    }
+
+    void FuelConsumption() const override
+    {
+        cout << "Fuel consumption 30 l/100 km" << endl;
+    }
+
+    void WheelsCount() const override
+    {
+        cout << "Wheels " << wheels << endl;
+    }
+
+    void PassengersCount() const override
+    {
+        cout << "Passengers " << passengers << endl;
+    }
+};
+
+class Truck : public Vehicle
+{
+    double loadCapacity;
+    bool hasTrailer;
+    string cargoType;
+public:
+    Truck() {};
+    Truck(string mod, string col, int ye, int whe, double pri, double sp,
+        double load, bool trail, string cargo) : Vehicle(mod, col, ye, whe, pri, sp)
+    {
+        loadCapacity = load;
+        hasTrailer = trail;
+        cargoType = cargo;
+    }
+
+    void Print() override
+    {
+        Vehicle::Print();
+        cout << "Load " << loadCapacity << endl;
+        cout << "Trailer " << hasTrailer << endl;
+        cout << "Cargo " << cargoType << endl;
+    }
+
+    void Init(string mod, string col, int ye, int whe, double pri, double sp,
+        double load, bool trail, string cargo)
+    {
+        Vehicle::Init(mod, col, ye, whe, pri, sp);
+        loadCapacity = load;
+        hasTrailer = trail;
+        cargoType = cargo;
+    }
+
+    void MaxSpeed() const override
+    {
+        cout << "Max speed " << max_speed << " km/h" << endl;
+    }
+
+    void FuelConsumption() const override
+    {
+        cout << "Fuel consumption: 35 l/100 km" << endl;
+    }
+
+    void WheelsCount() const override
+    {
+        cout << "Wheels " << wheels << endl;
+    }
+
+    void PassengersCount() const override
+    {
+        cout << "Passengers: 2" << endl;
+    }
+};
+
+int main()
+{
+    Vehicle* vehicle = nullptr;
+
+    int choice = 0;
+
+    cout << "1. двушка" << endl;
+    cout << "2. лёшка" << endl;
+    cout << "3. жипка" << endl;
+    cout << "4. автобуска" << endl;
+    cout << "5. фурка" << endl;
+    cout << "Make your choice: ";
+
+    cin >> choice;
+
+    switch (choice)
+    {
+        case 1:
+            vehicle = new Twoweels("Merida", "blue", 2022, 2, 600, 35, true, 19, "rim");
+            break;
+        case 2:
+            vehicle = new Car("Toyota", "yellow", 2019, 4, 18000, 190, 4, 5, "automatic");
+            break;
+        case 3:
+            vehicle = new Jeep("Jimny", "purple", 2021, 4, 25000, 145, true, 210, "mud");
+            break;
+        case 4:
+            vehicle = new Bus("MAN", "orange", 2018, 6, 250000, 90, 90, 3, true);
+            break;
+        case 5:
+            vehicle = new Truck("Volvo", "red", 2017, 10, 120000, 110, 20, true, "furniture");
+            break;
+        default:
+            cout << "Wrong choice" << endl;
+            return 1;
+    }
+
+    cout << endl;
+    vehicle->Print();
+
+    cout << endl;
+    vehicle->MaxSpeed();
+    vehicle->FuelConsumption();
+    vehicle->WheelsCount();
+    vehicle->PassengersCount();
+
+    return 0;
+}
